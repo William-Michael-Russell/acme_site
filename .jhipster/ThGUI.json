@@ -1,0 +1,9 @@
+{
+    "relationships": [],
+    "fields": [],
+    "changelogDate": "20170121054206",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "th_gui",
+    "pagination": "infinite-scroll"
+}

@@ -1,0 +1,15 @@
+version: '2'
+services:
+    acme_site-app:
+        image: acme_site
+        external_links:
+            - acme_site-mysql:mysql
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/acme_site?useUnicode=true&characterEncoding=utf8&useSSL=false
+        ports:
+            - 8080:8080
+    acme_site-mysql:
+        extends:
+            file: mysql.yml
+            service: acme_site-mysql

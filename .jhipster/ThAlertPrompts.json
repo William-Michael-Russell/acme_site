@@ -1,0 +1,9 @@
+{
+    "relationships": [],
+    "fields": [],
+    "changelogDate": "20170122034459",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "th_alert_prompts",
+    "pagination": "pagination"
+}

@@ -1,0 +1,9 @@
+{
+    "relationships": [],
+    "fields": [],
+    "changelogDate": "20170122034348",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "th_selector_paths",
+    "pagination": "pagination"
+}

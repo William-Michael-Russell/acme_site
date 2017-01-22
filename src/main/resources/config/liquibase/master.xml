@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170121054206_added_entity_ThGUI.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170121080139_added_entity_ThTextInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170121080711_added_entity_ThPhoneInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170121085110_added_entity_ThEmailInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170121085600_added_entity_ThPasswordInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170121192716_added_entity_ThNumericInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170122032755_added_entity_ThDropDownInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170122032850_added_entity_ThRadioInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170122033144_added_entity_ThVideoInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170122033517_added_entity_ThImageInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170122034348_added_entity_ThSelectorPaths.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170122034417_added_entity_ThFrameView.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170122034436_added_entity_ThScrollingView.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170122034459_added_entity_ThAlertPrompts.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170122034519_added_entity_ThToolTips.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="classpath:config/liquibase/changelog/20170121080139_added_entity_constraints_ThTextInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170121080711_added_entity_constraints_ThPhoneInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170121085110_added_entity_constraints_ThEmailInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170121085600_added_entity_constraints_ThPasswordInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170121192716_added_entity_constraints_ThNumericInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170122032755_added_entity_constraints_ThDropDownInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170122032850_added_entity_constraints_ThRadioInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170122033144_added_entity_constraints_ThVideoInput.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170122033517_added_entity_constraints_ThImageInput.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

@@ -1,0 +1,26 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "phoneInputField",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "^[(]{0,1}[0-9]{3}[)]{0,1}[-\\s\\.]{0,1}[0-9]{3}[-\\s\\.]{0,1}[0-9]{4}$",
+            "fieldValidateRulesPatternJava": "^[(]{0,1}[0-9]{3}[)]{0,1}[-\\\\s\\\\.]{0,1}[0-9]{3}[-\\\\s\\\\.]{0,1}[0-9]{4}$"
+        }
+    ],
+    "changelogDate": "20170121080711",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "th_phone_input",
+    "pagination": "pagination"
+}

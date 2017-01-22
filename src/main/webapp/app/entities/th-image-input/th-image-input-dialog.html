@@ -1,0 +1,69 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myThImageInputLabel">Create or edit a Th Image Input</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.thImageInput.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.thImageInput.id" readonly />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setImageInputField($file, vm.thImageInput)" ngf-pattern="'image/*'">
+            <label class="control-label" for="field_imageInputField">Image Input Field</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.thImageInput.imageInputFieldContentType + ';base64,' + vm.thImageInput.imageInputField}}" style="max-height: 100px;" ng-if="vm.thImageInput.imageInputField"/>
+                <div class="help-block clearfix">
+                    <span class="pull-left">{{vm.thImageInput.imageInputFieldContentType}}, {{byteSize(vm.thImageInput.imageInputField)}}</span>
+                    <button ng-click="vm.thImageInput.imageInputField=null;vm.thImageInput.imageInputFieldContentType=null;"
+                            ng-if="vm.thImageInput.imageInputField"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="file" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setImageInputField($file, vm.thImageInput)" accept="image/*">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="imageInputField" id="field_imageInputField"
+                    ng-model="vm.thImageInput.imageInputField"
+                    required minbytes="5" maxbytes="5000000" />
+            <input type="hidden" class="form-control" name="imageInputFieldContentType" id="field_imageInputFieldContentType"
+                    ng-model="vm.thImageInput.imageInputFieldContentType" />
+            <div ng-show="editForm.imageInputField.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.imageInputField.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.imageInputField.$error.minbytes" translate-value-min="5">
+                    This field should be more than 5.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.imageInputField.$error.maxbytes">
+                    This field cannot be more than 5000000.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" ng-model="vm.thImageInput.user" ng-options="user as user.login for user in vm.users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

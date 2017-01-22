@@ -1,0 +1,9 @@
+{
+    "relationships": [],
+    "fields": [],
+    "changelogDate": "20170122034519",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "th_tool_tips",
+    "pagination": "pagination"
+}

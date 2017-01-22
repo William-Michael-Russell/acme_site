@@ -1,0 +1,27 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "textedInputField",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "1",
+            "fieldValidateRulesMaxlength": 20
+        }
+    ],
+    "changelogDate": "20170121080139",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "th_text_input",
+    "pagination": "pagination"
+}
