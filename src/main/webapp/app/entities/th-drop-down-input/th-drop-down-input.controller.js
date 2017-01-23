@@ -15,6 +15,25 @@
         vm.reverse = pagingParams.ascending;
         vm.transition = transition;
         vm.loadAll();
+        vm.dropDown = {};
+        vm.dropDown.names = {};
+        vm.dropDown.states = [
+            {name : "", code : ""},
+            {name : "California", code : "CA"},
+            {name : "Alabama", code : "AL"},
+            {name : "Alaska", code : "AK"},
+            {name : "Arizona", code : "AZ"},
+            {name : "Colorado", code : "CO"},
+            {name : "Delaware", code : "DE"},
+            {name : "Michigan", code : "MI"},
+            {name : " ", code : "MAGA"},
+            {name : "New Jersey", code : "NJ"},
+            {name : "New Mexico", code : "NM"},
+            {name : "New York", code : "NY"},
+            {name : "Ohio", code : "OH"},
+            {name : "West Virginia", code : "WV"}
+
+        ];
 
         function loadAll () {
             ThDropDownInput.query({

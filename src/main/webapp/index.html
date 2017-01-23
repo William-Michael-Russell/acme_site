@@ -27,7 +27,11 @@
         <div class="well" ui-view="content"></div>
 
         <div class="footer" ng-cloak>
-            <p>This is your footer</p>
+            <div class="row">
+                <div class="col-md-8">
+                    <span class="glyphicon glyphicon-copyright-mark">Testaholic.net <strong>2017</strong></span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -83,37 +87,43 @@
     <script src="app/services/auth/account.service.js"></script>
     <script src="app/layouts/navbar/navbar.controller.js"></script>
     <script src="app/layouts/navbar/active-link.directive.js"></script>
+    <script src="app/layouts/error/error.state.js"></script>
     <script src="app/entities/th-video-input/th-video-input.state.js"></script>
     <script src="app/entities/th-video-input/th-video-input.service.js"></script>
     <script src="app/entities/th-video-input/th-video-input.controller.js"></script>
     <script src="app/entities/th-video-input/th-video-input-dialog.controller.js"></script>
     <script src="app/entities/th-video-input/th-video-input-detail.controller.js"></script>
     <script src="app/entities/th-video-input/th-video-input-delete-dialog.controller.js"></script>
-    <script src="app/layouts/error/error.state.js"></script>
     <script src="app/entities/th-tool-tips/th-tool-tips.state.js"></script>
     <script src="app/entities/th-tool-tips/th-tool-tips.service.js"></script>
     <script src="app/entities/th-tool-tips/th-tool-tips.controller.js"></script>
     <script src="app/entities/th-tool-tips/th-tool-tips-dialog.controller.js"></script>
     <script src="app/entities/th-tool-tips/th-tool-tips-detail.controller.js"></script>
     <script src="app/entities/th-tool-tips/th-tool-tips-delete-dialog.controller.js"></script>
-    <script src="app/entities/th-selector-paths/th-selector-paths.state.js"></script>
-    <script src="app/entities/th-selector-paths/th-selector-paths.service.js"></script>
-    <script src="app/entities/th-selector-paths/th-selector-paths.controller.js"></script>
-    <script src="app/entities/th-selector-paths/th-selector-paths-dialog.controller.js"></script>
-    <script src="app/entities/th-selector-paths/th-selector-paths-detail.controller.js"></script>
-    <script src="app/entities/th-selector-paths/th-selector-paths-delete-dialog.controller.js"></script>
     <script src="app/entities/th-text-input/th-text-input.state.js"></script>
     <script src="app/entities/th-text-input/th-text-input.service.js"></script>
     <script src="app/entities/th-text-input/th-text-input.controller.js"></script>
     <script src="app/entities/th-text-input/th-text-input-dialog.controller.js"></script>
     <script src="app/entities/th-text-input/th-text-input-detail.controller.js"></script>
     <script src="app/entities/th-text-input/th-text-input-delete-dialog.controller.js"></script>
+    <script src="app/entities/th-selector-paths/th-selector-paths.state.js"></script>
+    <script src="app/entities/th-selector-paths/th-selector-paths.service.js"></script>
+    <script src="app/entities/th-selector-paths/th-selector-paths.controller.js"></script>
+    <script src="app/entities/th-selector-paths/th-selector-paths-dialog.controller.js"></script>
+    <script src="app/entities/th-selector-paths/th-selector-paths-detail.controller.js"></script>
+    <script src="app/entities/th-selector-paths/th-selector-paths-delete-dialog.controller.js"></script>
     <script src="app/entities/th-scrolling-view/th-scrolling-view.state.js"></script>
     <script src="app/entities/th-scrolling-view/th-scrolling-view.service.js"></script>
     <script src="app/entities/th-scrolling-view/th-scrolling-view.controller.js"></script>
     <script src="app/entities/th-scrolling-view/th-scrolling-view-dialog.controller.js"></script>
     <script src="app/entities/th-scrolling-view/th-scrolling-view-detail.controller.js"></script>
     <script src="app/entities/th-scrolling-view/th-scrolling-view-delete-dialog.controller.js"></script>
+    <script src="app/entities/th-radio-input/th-radio-input.state.js"></script>
+    <script src="app/entities/th-radio-input/th-radio-input.service.js"></script>
+    <script src="app/entities/th-radio-input/th-radio-input.controller.js"></script>
+    <script src="app/entities/th-radio-input/th-radio-input-dialog.controller.js"></script>
+    <script src="app/entities/th-radio-input/th-radio-input-detail.controller.js"></script>
+    <script src="app/entities/th-radio-input/th-radio-input-delete-dialog.controller.js"></script>
     <script src="app/entities/th-phone-input/th-phone-input.state.js"></script>
     <script src="app/entities/th-phone-input/th-phone-input.service.js"></script>
     <script src="app/entities/th-phone-input/th-phone-input.controller.js"></script>
@@ -126,12 +136,6 @@
     <script src="app/entities/th-password-input/th-password-input-dialog.controller.js"></script>
     <script src="app/entities/th-password-input/th-password-input-detail.controller.js"></script>
     <script src="app/entities/th-password-input/th-password-input-delete-dialog.controller.js"></script>
-    <script src="app/entities/th-radio-input/th-radio-input.state.js"></script>
-    <script src="app/entities/th-radio-input/th-radio-input.service.js"></script>
-    <script src="app/entities/th-radio-input/th-radio-input.controller.js"></script>
-    <script src="app/entities/th-radio-input/th-radio-input-dialog.controller.js"></script>
-    <script src="app/entities/th-radio-input/th-radio-input-detail.controller.js"></script>
-    <script src="app/entities/th-radio-input/th-radio-input-delete-dialog.controller.js"></script>
     <script src="app/entities/th-numeric-input/th-numeric-input.state.js"></script>
     <script src="app/entities/th-numeric-input/th-numeric-input.service.js"></script>
     <script src="app/entities/th-numeric-input/th-numeric-input.controller.js"></script>
@@ -205,15 +209,15 @@
     <script src="app/blocks/config/http.config.js"></script>
     <script src="app/blocks/config/compile.config.js"></script>
     <script src="app/blocks/config/alert.config.js"></script>
-    <script src="app/admin/metrics/metrics.state.js"></script>
-    <script src="app/admin/metrics/metrics.service.js"></script>
-    <script src="app/admin/metrics/metrics.modal.controller.js"></script>
-    <script src="app/admin/metrics/metrics.controller.js"></script>
     <script src="app/admin/user-management/user-management.state.js"></script>
     <script src="app/admin/user-management/user-management.controller.js"></script>
     <script src="app/admin/user-management/user-management-dialog.controller.js"></script>
     <script src="app/admin/user-management/user-management-detail.controller.js"></script>
     <script src="app/admin/user-management/user-management-delete-dialog.controller.js"></script>
+    <script src="app/admin/metrics/metrics.state.js"></script>
+    <script src="app/admin/metrics/metrics.service.js"></script>
+    <script src="app/admin/metrics/metrics.modal.controller.js"></script>
+    <script src="app/admin/metrics/metrics.controller.js"></script>
     <script src="app/admin/logs/logs.state.js"></script>
     <script src="app/admin/logs/logs.service.js"></script>
     <script src="app/admin/logs/logs.controller.js"></script>
@@ -237,9 +241,9 @@
     <script src="app/account/password/password-strength-bar.directive.js"></script>
     <script src="app/account/activate/activate.state.js"></script>
     <script src="app/account/activate/activate.controller.js"></script>
-    <script src="app/entities/entity.state.js"></script>
     <script src="app/home/home.state.js"></script>
     <script src="app/home/home.controller.js"></script>
+    <script src="app/entities/entity.state.js"></script>
     <script src="app/admin/admin.state.js"></script>
     <script src="app/account/account.state.js"></script>
     <script src="app/app.state.js"></script>

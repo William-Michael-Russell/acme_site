@@ -4,7 +4,7 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myThImageInputLabel">Create or edit a Th Image Input</h4>
+        <h4 class="modal-title" id="myThImageInputLabel">Create or edit a Image Input</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
@@ -18,14 +18,14 @@
             <div>
                 <img data-ng-src="{{'data:' + vm.thImageInput.imageInputFieldContentType + ';base64,' + vm.thImageInput.imageInputField}}" style="max-height: 100px;" ng-if="vm.thImageInput.imageInputField"/>
                 <div class="help-block clearfix">
-                    <span class="pull-left">{{vm.thImageInput.imageInputFieldContentType}}, {{byteSize(vm.thImageInput.imageInputField)}}</span>
+                    <span class="pull-left">{{vm.thImageInput.imageInputFieldContentType}} {{byteSize(vm.thImageInput.imageInputField)}}</span>
                     <button ng-click="vm.thImageInput.imageInputField=null;vm.thImageInput.imageInputFieldContentType=null;"
                             ng-if="vm.thImageInput.imageInputField"
                             class="btn btn-default btn-xs pull-right">
                         <span class="glyphicon glyphicon-remove"></span>
                     </button>
                 </div>
-                <button type="file" ngf-select class="btn btn-default btn-block"
+                <button type="file" accept="image/*" ngf-select class="btn btn-default btn-block"
                         ngf-change="vm.setImageInputField($file, vm.thImageInput)" accept="image/*">
                     Add image
                 </button>
@@ -51,12 +51,6 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="field_user">User</label>
-            <select class="form-control" id="field_user" name="user" ng-model="vm.thImageInput.user" ng-options="user as user.login for user in vm.users track by user.id">
-                <option value=""></option>
-            </select>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

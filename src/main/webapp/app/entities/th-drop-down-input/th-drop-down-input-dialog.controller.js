@@ -12,6 +12,11 @@
         vm.thDropDownInput = entity;
         vm.users = User.query();
 
+        vm.entities = Entity.query({
+            page: 0,
+            size: 20
+        });
+
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });

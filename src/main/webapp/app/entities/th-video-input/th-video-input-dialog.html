@@ -4,7 +4,7 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myThVideoInputLabel">Create or edit a Th Video Input</h4>
+        <h4 class="modal-title" id="myThVideoInputLabel">Video Upload</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
@@ -18,16 +18,17 @@
             <div>
                 <div class="help-block clearfix">
                     <a class="pull-left" ng-click="vm.openFile(vm.thVideoInput.videoInputFieldContentType, vm.thVideoInput.videoInputField)" ng-if="vm.thVideoInput.videoInputField" target="_blank">open</a><br>
-                    <span class="pull-left">{{vm.thVideoInput.videoInputFieldContentType}}, {{byteSize(vm.thVideoInput.videoInputField)}}</span>
+                    <span class="pull-left">{{vm.thVideoInput.videoInputFieldContentType}} {{byteSize(vm.thVideoInput.videoInputField)}}</span>
                     <button ng-click="vm.thVideoInput.videoInputField=null;vm.thVideoInput.videoInputFieldContentType=null;"
                             ng-if="vm.thVideoInput.videoInputField"
                             class="btn btn-default btn-xs pull-right">
                         <span class="glyphicon glyphicon-remove"></span>
                     </button>
                 </div>
-                <button type="file" ngf-select class="btn btn-default btn-block"
+
+                <button type="file" accept="video/*" ngf-select class="btn btn-default btn-block"
                         ngf-change="vm.setVideoInputField($file, vm.thVideoInput)">
-                    Add blob
+                    Add Video
                 </button>
             </div>
             <input type="hidden" class="form-control" name="videoInputField" id="field_videoInputField"
@@ -42,20 +43,13 @@
                 </p>
                 <p class="help-block"
                    ng-show="editForm.videoInputField.$error.minbytes" translate-value-min="50">
-                    This field should be more than 50.
+                    This field should be more than 50 bytes.
                 </p>
                 <p class="help-block"
                    ng-show="editForm.videoInputField.$error.maxbytes">
-                    This field cannot be more than 10000000.
+                    This field cannot be more than 10000000 bytes.
                 </p>
             </div>
-        </div>
-
-        <div class="form-group">
-            <label for="field_user">User</label>
-            <select class="form-control" id="field_user" name="user" ng-model="vm.thVideoInput.user" ng-options="user as user.login for user in vm.users track by user.id">
-                <option value=""></option>
-            </select>
         </div>
     </div>
     <div class="modal-footer">

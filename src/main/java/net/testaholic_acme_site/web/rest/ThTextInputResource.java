@@ -3,6 +3,8 @@ package net.testaholic_acme_site.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import net.testaholic_acme_site.domain.ThTextInput;
 import net.testaholic_acme_site.repository.ThTextInputRepository;
+import net.testaholic_acme_site.repository.UserRepository;
+import net.testaholic_acme_site.security.SecurityUtils;
 import net.testaholic_acme_site.web.rest.util.HeaderUtil;
 import net.testaholic_acme_site.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -30,10 +32,13 @@ import java.util.Optional;
 public class ThTextInputResource {
 
     private final Logger log = LoggerFactory.getLogger(ThTextInputResource.class);
-        
+
     @Inject
     private ThTextInputRepository thTextInputRepository;
-    
+
+    @Inject
+    private UserRepository userRepository;
+
     /**
      * POST  /th-text-inputs : Create a new thTextInput.
      *
@@ -50,6 +55,7 @@ public class ThTextInputResource {
         if (thTextInput.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("thTextInput", "idexists", "A new thTextInput cannot already have an ID")).body(null);
         }
+        thTextInput.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
         ThTextInput result = thTextInputRepository.save(thTextInput);
         return ResponseEntity.created(new URI("/api/th-text-inputs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("thTextInput", result.getId().toString()))
@@ -94,7 +100,7 @@ public class ThTextInputResource {
     public ResponseEntity<List<ThTextInput>> getAllThTextInputs(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of ThTextInputs");
-        Page<ThTextInput> page = thTextInputRepository.findAll(pageable); 
+        Page<ThTextInput> page = thTextInputRepository.findByUserIsCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/th-text-inputs");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

@@ -1,58 +1,53 @@
 <div>
-    <h2>Th Alert Prompts</h2>
+    <h2>Alert Prompts</h2>
     <jhi-alert></jhi-alert>
+
+    <br/>
+    <br/>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="th-alert-prompts.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span >
-                        Create new Th Alert Prompts
-                    </span>
-                </button>
-            </div>
-        </div>
+        <p>Click the button to display a alert dialog box.</p>
+
+        <button class="btn btn-primary" onclick="alertPrompt()">Basic Alert</button>
+        <p id="demo"></p>
+
+        <script>
+            function alertPrompt() {
+                var x;
+                if (confirm("Press a button!") == true) {
+                    x = "You pressed OK!";
+                } else {
+                    x = "You pressed Cancel!";
+                }
+                document.getElementById("demo").innerHTML = x;
+            }
+        </script>
+
+
+
+        <br/>
+        <br/>
+        <br/>
+        <p>Click the button to demonstrate the prompt box.</p>
+
+        <button class="btn btn-primary" onclick="myFunction()">Enter your name</button>
+
+        <p id="promptBox"></p>
+
+        <script>
+            function myFunction() {
+                var person = prompt("Please enter your name");
+
+                if (person) {
+                    document.getElementById("promptBox").innerHTML =
+                        "Hello " + person + "! How are you today?";
+                }else{
+                    document.getElementById("promptBox").innerHTML =
+                        "Please enter a name. ";
+                }
+            }
+        </script>
+
     </div>
     <br/>
-    <div class="table-responsive">
-        <table class="jh-table table table-striped">
-            <thead>
-                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="thAlertPrompts in vm.thAlertPrompts track by thAlertPrompts.id">
-                    <td><a ui-sref="th-alert-prompts-detail({id:thAlertPrompts.id})">{{thAlertPrompts.id}}</a></td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="th-alert-prompts-detail({id:thAlertPrompts.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-xs hidden-sm"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="th-alert-prompts.edit({id:thAlertPrompts.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="th-alert-prompts.delete({id:thAlertPrompts.id})"
-                                    class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-xs hidden-sm"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="text-center">
-        <jhi-item-count page="vm.page" total="vm.queryCount"></jhi-item-count>
-        <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
-    </div>
+
 </div>

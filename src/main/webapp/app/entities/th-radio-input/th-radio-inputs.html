@@ -1,64 +1,16 @@
 <div>
-    <h2>Th Radio Inputs</h2>
+    <h2>Radios</h2>
     <jhi-alert></jhi-alert>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="th-radio-input.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span >
-                        Create new Th Radio Input
-                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
-    <br/>
-    <div class="table-responsive">
-        <table class="jh-table table table-striped">
-            <thead>
-                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="radioInputField"><span>Radio Input Field</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="user.login"><span>User</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="thRadioInput in vm.thRadioInputs track by thRadioInput.id">
-                    <td><a ui-sref="th-radio-input-detail({id:thRadioInput.id})">{{thRadioInput.id}}</a></td>
-                    <td>{{thRadioInput.radioInputField}}</td>
-                    <td>
-                        {{thRadioInput.user.login}}
-                    </td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="th-radio-input-detail({id:thRadioInput.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-xs hidden-sm"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="th-radio-input.edit({id:thRadioInput.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="th-radio-input.delete({id:thRadioInput.id})"
-                                    class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-xs hidden-sm"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="text-center">
-        <jhi-item-count page="vm.page" total="vm.queryCount"></jhi-item-count>
-        <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
-    </div>
 </div>
+<form name="myForm">
+    <p>Favorite President?</p>
+    <ul>
+        <li ng-repeat="president in vm.presidents">
+            <label>{{president.name}}
+                <input type="radio" ng-model="$parent.name" name="name" value="{{president.name}}" required/>
+            </label>
+        </li>
+    </ul>
+    <p>Element Selected?: {{myForm.$valid}}</p>
+</form>
+

@@ -14,6 +14,21 @@
         vm.predicate = pagingParams.predicate;
         vm.reverse = pagingParams.ascending;
         vm.transition = transition;
+
+        vm.occurrenceOptions ={};
+
+
+        vm.presidents = [{
+            name: "Trump"
+        }, {
+            name: "Washington"
+        }, {
+            name: "George"
+        }, {
+            name: "Jefferson"
+        }];
+
+
         vm.loadAll();
 
         function loadAll () {

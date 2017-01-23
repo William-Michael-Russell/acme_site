@@ -3,6 +3,8 @@ package net.testaholic_acme_site.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import net.testaholic_acme_site.domain.ThDropDownInput;
 import net.testaholic_acme_site.repository.ThDropDownInputRepository;
+import net.testaholic_acme_site.repository.UserRepository;
+import net.testaholic_acme_site.security.SecurityUtils;
 import net.testaholic_acme_site.web.rest.util.HeaderUtil;
 import net.testaholic_acme_site.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -30,10 +32,13 @@ import java.util.Optional;
 public class ThDropDownInputResource {
 
     private final Logger log = LoggerFactory.getLogger(ThDropDownInputResource.class);
-        
+
     @Inject
     private ThDropDownInputRepository thDropDownInputRepository;
-    
+
+    @Inject
+    private UserRepository userRepository;
+
     /**
      * POST  /th-drop-down-inputs : Create a new thDropDownInput.
      *
@@ -50,6 +55,7 @@ public class ThDropDownInputResource {
         if (thDropDownInput.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("thDropDownInput", "idexists", "A new thDropDownInput cannot already have an ID")).body(null);
         }
+        thDropDownInput.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
         ThDropDownInput result = thDropDownInputRepository.save(thDropDownInput);
         return ResponseEntity.created(new URI("/api/th-drop-down-inputs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("thDropDownInput", result.getId().toString()))
@@ -94,7 +100,7 @@ public class ThDropDownInputResource {
     public ResponseEntity<List<ThDropDownInput>> getAllThDropDownInputs(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of ThDropDownInputs");
-        Page<ThDropDownInput> page = thDropDownInputRepository.findAll(pageable); 
+        Page<ThDropDownInput> page = thDropDownInputRepository.findByUserIsCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/th-drop-down-inputs");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

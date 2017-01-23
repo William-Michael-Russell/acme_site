@@ -3,6 +3,8 @@ package net.testaholic_acme_site.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import net.testaholic_acme_site.domain.ThEmailInput;
 import net.testaholic_acme_site.repository.ThEmailInputRepository;
+import net.testaholic_acme_site.repository.UserRepository;
+import net.testaholic_acme_site.security.SecurityUtils;
 import net.testaholic_acme_site.web.rest.util.HeaderUtil;
 import net.testaholic_acme_site.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -30,10 +32,12 @@ import java.util.Optional;
 public class ThEmailInputResource {
 
     private final Logger log = LoggerFactory.getLogger(ThEmailInputResource.class);
-        
+
     @Inject
     private ThEmailInputRepository thEmailInputRepository;
-    
+    @Inject
+    private UserRepository userRepository;
+
     /**
      * POST  /th-email-inputs : Create a new thEmailInput.
      *
@@ -50,6 +54,7 @@ public class ThEmailInputResource {
         if (thEmailInput.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("thEmailInput", "idexists", "A new thEmailInput cannot already have an ID")).body(null);
         }
+        thEmailInput.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
         ThEmailInput result = thEmailInputRepository.save(thEmailInput);
         return ResponseEntity.created(new URI("/api/th-email-inputs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("thEmailInput", result.getId().toString()))
@@ -94,7 +99,7 @@ public class ThEmailInputResource {
     public ResponseEntity<List<ThEmailInput>> getAllThEmailInputs(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of ThEmailInputs");
-        Page<ThEmailInput> page = thEmailInputRepository.findAll(pageable); 
+        Page<ThEmailInput> page = thEmailInputRepository.findByUserIsCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/th-email-inputs");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

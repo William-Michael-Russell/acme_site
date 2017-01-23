@@ -1,54 +1,198 @@
-<div>
-    <h2>Th Guis</h2>
-    <jhi-alert></jhi-alert>
-    <div class="container-fluid">
-        <div class="row">
+
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="col-md-2">GUI</h3>
+    </div>
+    <div class="col-md-12">
+        <p><strong>These Common WebElements for testing. They are used for both manual testing or automation.</strong></p>
+        <br>
+        <p>Some elements purposely have difficult selectors, enjoy!</p>
+    </div>
+
+</div>
+<jhi-alert></jhi-alert>
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12"> <!-- FIRST COL -->
+    <div class="panel panel-default">
+        <div class="panel-body">
+
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="th-gui.new" >
+                <button class="btn btn-primary btn-block" ui-sref="th-text-input"
+                        style="margin-bottom:4px;white-space: normal;">
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span >
-                        Create new Th Gui
+                        Alpha Numeric
                     </span>
+                </button>
+            </div>
+
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary btn-block" ui-sref="th-numeric-input"
+                        style="margin-bottom:4px;white-space: normal;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Numeric Input
+                    </span>
+                </button>
+            </div>
+
+
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary btn-block" ui-sref="th-email-input"
+                        style="margin-bottom:4px;white-space: normal;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                        Email Input
+                    </span>
+
+                </button>
+            </div>
+
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary btn-block" ui-sref="th-phone-input"
+                        style="margin-bottom:4px;white-space: normal;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Phone Input
+                    </span>
+                </button>
+            </div>
+
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary btn-block" ui-sref="th-password-input"
+                        style="margin-bottom:4px;white-space: normal;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Password Input
+                    </span>
+                </button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<br clear="all"/>
+
+<h4>Radio & Dropdown</h4>
+<jhi-alert></jhi-alert>
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12"> <!-- FIRST COL -->
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary btn-block" ui-sref="th-radio-input"
+                        style="margin-bottom:4px;white-space: normal;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                Radio Field
+                </span>
+                </button>
+            </div>
+
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary btn-block" ui-sref="th-drop-down-input"
+                        style="margin-bottom:4px;white-space: normal;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span translate="global.menu.entities.dropDownField">
+                Drop Down Field
+                </span>
                 </button>
             </div>
         </div>
     </div>
-    <br/>
-    <div class="table-responsive">
-        <table class="jh-table table table-striped">
-            <thead>
-                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
-                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
-                <tr ng-repeat="thGUI in vm.thGUIS track by thGUI.id">
-                    <td><a ui-sref="th-gui-detail({id:thGUI.id})">{{thGUI.id}}</a></td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="th-gui-detail({id:thGUI.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-xs hidden-sm"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="th-gui.edit({id:thGUI.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="th-gui.delete({id:thGUI.id})"
-                                    class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-xs hidden-sm"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+</div>
+
+<!--<br clear="all"/>-->
+
+<!--<h4>Alerts & Tooltips</h4>-->
+<!--<jhi-alert></jhi-alert>-->
+<!--<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12"> &lt;!&ndash; FIRST COL &ndash;&gt;-->
+    <!--<div class="panel panel-default">-->
+        <!--<div class="panel-body">-->
+
+            <!--<div class="col-xs-4 no-padding-left">-->
+                <!--<button class="btn btn-primary btn-block" ui-sref="th-alert-prompts"-->
+                        <!--style="margin-bottom:4px;white-space: normal;">-->
+                    <!--<span class="glyphicon glyphicon-plus"></span>-->
+                    <!--Alert Prompts-->
+                    <!--</span>-->
+                <!--</button>-->
+            <!--</div>-->
+
+            <!--<div class="col-xs-4 no-padding-left">-->
+                <!--<button class="btn btn-primary btn-block" ui-sref="th-tool-tips"-->
+                        <!--style="margin-bottom:4px;white-space: normal;">-->
+                    <!--<span class="glyphicon glyphicon-plus"></span>-->
+                    <!--<span translate="global.menu.entities.dropDownField">-->
+                <!--Tooltips-->
+                <!--</span>-->
+                <!--</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<br clear="all"/>
+
+<h4>Alerts, IFrame & Scrolling views</h4>
+<jhi-alert></jhi-alert>
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12"> <!-- FIRST COL -->
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary btn-block" ui-sref="th-alert-prompts"
+                        style="margin-bottom:4px;white-space: normal;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Alert Prompts
+                    </span>
+                </button>
+            </div>
+
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary btn-block" ui-sref="th-frame-view"
+                        style="margin-bottom:4px;white-space: normal;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Frame View
+                    </span>
+                </button>
+            </div>
+
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary btn-block" ui-sref="th-scrolling-view"
+                        style="margin-bottom:4px;white-space: normal;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span translate="global.menu.entities.dropDownField">
+                Scrolling View
+                </span>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
+
+<br clear="all"/>
+
+<h4>Video & Image Upload</h4>
+<jhi-alert></jhi-alert>
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12"> <!-- FIRST COL -->
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary btn-block" ui-sref="th-video-input"
+                        style="margin-bottom:4px;white-space: normal;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Video Upload
+                    </span>
+                </button>
+            </div>
+
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary btn-block" ui-sref="th-image-input"
+                        style="margin-bottom:4px;white-space: normal;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span translate="global.menu.entities.dropDownField">
+                Image Upload
+                </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<br clear="all"/>

@@ -16,6 +16,9 @@
         vm.transition = transition;
         vm.loadAll();
 
+
+
+
         function loadAll () {
             ThAlertPrompts.query({
                 page: pagingParams.page - 1,

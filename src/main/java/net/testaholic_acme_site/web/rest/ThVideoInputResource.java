@@ -3,6 +3,8 @@ package net.testaholic_acme_site.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import net.testaholic_acme_site.domain.ThVideoInput;
 import net.testaholic_acme_site.repository.ThVideoInputRepository;
+import net.testaholic_acme_site.repository.UserRepository;
+import net.testaholic_acme_site.security.SecurityUtils;
 import net.testaholic_acme_site.web.rest.util.HeaderUtil;
 import net.testaholic_acme_site.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -30,10 +32,13 @@ import java.util.Optional;
 public class ThVideoInputResource {
 
     private final Logger log = LoggerFactory.getLogger(ThVideoInputResource.class);
-        
+
     @Inject
     private ThVideoInputRepository thVideoInputRepository;
-    
+
+    @Inject
+    private UserRepository userRepository;
+
     /**
      * POST  /th-video-inputs : Create a new thVideoInput.
      *
@@ -50,6 +55,8 @@ public class ThVideoInputResource {
         if (thVideoInput.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("thVideoInput", "idexists", "A new thVideoInput cannot already have an ID")).body(null);
         }
+
+        thVideoInput.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
         ThVideoInput result = thVideoInputRepository.save(thVideoInput);
         return ResponseEntity.created(new URI("/api/th-video-inputs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("thVideoInput", result.getId().toString()))
@@ -94,7 +101,7 @@ public class ThVideoInputResource {
     public ResponseEntity<List<ThVideoInput>> getAllThVideoInputs(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of ThVideoInputs");
-        Page<ThVideoInput> page = thVideoInputRepository.findAll(pageable); 
+        Page<ThVideoInput> page = thVideoInputRepository.findByUserIsCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/th-video-inputs");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

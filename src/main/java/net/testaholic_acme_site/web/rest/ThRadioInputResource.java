@@ -3,6 +3,8 @@ package net.testaholic_acme_site.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import net.testaholic_acme_site.domain.ThRadioInput;
 import net.testaholic_acme_site.repository.ThRadioInputRepository;
+import net.testaholic_acme_site.repository.UserRepository;
+import net.testaholic_acme_site.security.SecurityUtils;
 import net.testaholic_acme_site.web.rest.util.HeaderUtil;
 import net.testaholic_acme_site.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -30,10 +32,13 @@ import java.util.Optional;
 public class ThRadioInputResource {
 
     private final Logger log = LoggerFactory.getLogger(ThRadioInputResource.class);
-        
+
     @Inject
     private ThRadioInputRepository thRadioInputRepository;
-    
+
+    @Inject
+    private UserRepository userRepository;
+
     /**
      * POST  /th-radio-inputs : Create a new thRadioInput.
      *
@@ -50,6 +55,7 @@ public class ThRadioInputResource {
         if (thRadioInput.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("thRadioInput", "idexists", "A new thRadioInput cannot already have an ID")).body(null);
         }
+        thRadioInput.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
         ThRadioInput result = thRadioInputRepository.save(thRadioInput);
         return ResponseEntity.created(new URI("/api/th-radio-inputs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("thRadioInput", result.getId().toString()))
@@ -94,7 +100,7 @@ public class ThRadioInputResource {
     public ResponseEntity<List<ThRadioInput>> getAllThRadioInputs(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of ThRadioInputs");
-        Page<ThRadioInput> page = thRadioInputRepository.findAll(pageable); 
+        Page<ThRadioInput> page = thRadioInputRepository.findByUserIsCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/th-radio-inputs");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

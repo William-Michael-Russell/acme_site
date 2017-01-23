@@ -3,6 +3,8 @@ package net.testaholic_acme_site.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import net.testaholic_acme_site.domain.ThPhoneInput;
 import net.testaholic_acme_site.repository.ThPhoneInputRepository;
+import net.testaholic_acme_site.repository.UserRepository;
+import net.testaholic_acme_site.security.SecurityUtils;
 import net.testaholic_acme_site.web.rest.util.HeaderUtil;
 import net.testaholic_acme_site.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -30,10 +32,12 @@ import java.util.Optional;
 public class ThPhoneInputResource {
 
     private final Logger log = LoggerFactory.getLogger(ThPhoneInputResource.class);
-        
+
     @Inject
     private ThPhoneInputRepository thPhoneInputRepository;
-    
+
+    @Inject
+    private UserRepository userRepository;
     /**
      * POST  /th-phone-inputs : Create a new thPhoneInput.
      *
@@ -50,6 +54,7 @@ public class ThPhoneInputResource {
         if (thPhoneInput.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("thPhoneInput", "idexists", "A new thPhoneInput cannot already have an ID")).body(null);
         }
+        thPhoneInput.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
         ThPhoneInput result = thPhoneInputRepository.save(thPhoneInput);
         return ResponseEntity.created(new URI("/api/th-phone-inputs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("thPhoneInput", result.getId().toString()))
@@ -94,7 +99,7 @@ public class ThPhoneInputResource {
     public ResponseEntity<List<ThPhoneInput>> getAllThPhoneInputs(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of ThPhoneInputs");
-        Page<ThPhoneInput> page = thPhoneInputRepository.findAll(pageable); 
+        Page<ThPhoneInput> page = thPhoneInputRepository.findByUserIsCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/th-phone-inputs");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
